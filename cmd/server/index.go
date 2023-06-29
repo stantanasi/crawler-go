@@ -14,4 +14,14 @@ func main() {
 	}
 	fmt.Println("Server started!")
 	// configuration du serveur //
+
+	for {
+		conn, err := ln.Accept()
+		defer conn.Close()
+		if err != nil {
+			fmt.Println("Error accepting connection:", err)
+			continue
+		}
+	}
+
 }
