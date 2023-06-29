@@ -6,6 +6,7 @@ type CreateSiteRequest struct {
 
 type CreateSiteReponse struct {
 	Command string `json:"command"`
+	Status string `json:"status"`
 }
 
 
@@ -15,6 +16,7 @@ type GetSiteRequest struct {
 
 type GetSiteResponse struct {
 	Command string `json:"command"`
+	Status string `json:"status"`
 }
 
 
@@ -24,6 +26,7 @@ type UpdateSiteRequest struct {
 
 type UpdateSiteReponse struct {
 	Command string `json:"command"`
+	Status string `json:"status"`
 }
 
 
@@ -33,6 +36,7 @@ type CreateFileRequest struct {
 
 type CreateFileResponse struct {
 	Command string `json:"command"`
+	Status string `json:"status"`
 }
 
 
@@ -42,6 +46,7 @@ type GetFileRequest struct {
 
 type GetFileResponse struct {
 	Command string `json:"command"`
+	Status string `json:"status"`
 }
 
 
@@ -51,4 +56,5 @@ type UpdateFileRequest struct {
 
 type UpdateFileResponse struct {
 	Command string `json:"command"`
+	Status string `json:"status"`
 }
