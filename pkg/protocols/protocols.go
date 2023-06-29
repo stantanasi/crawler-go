@@ -1,5 +1,16 @@
 package protocols
 
+
+type GenericRequest struct {
+	Command string `json:"command"`
+}
+
+type GenericResponse struct {
+	Command string `json:"command"`
+	Status string `json:"status"`
+}
+
+
 type CreateSiteRequest struct {
 	Command string `json:"command"`
 }
