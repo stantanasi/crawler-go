@@ -8,7 +8,7 @@ import (
 func main() {
 
 	// configuration du serveur //
-	conn, err := net.Dial("tcp", "localhost:8080")
+	conn, err := net.Dial("tcp", "localhost:1234")
 
 	if err != nil {
 

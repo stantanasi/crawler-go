@@ -7,28 +7,28 @@ import (
 )
 
 type Dir struct {
-	id int64
+	id       int64
 	hostname string
-	domain string
+	domain   string
 	lastseen time.Time
 }
 
 type File struct {
-	id int64
-	name string
-	url string
-	page string
+	id       int64
+	name     string
+	url      string
+	page     string
 	lastseen time.Time
 }
 
 type Database struct {
-	dirs []Dir
+	dirs  []Dir
 	files []File
 }
 
 func main() {
 	// configuration du serveur //
-	ln, err := net.Listen("tcp", "0.0.0.0:8080")
+	ln, err := net.Listen("tcp", "0.0.0.0:1234")
 	if err != nil {
 		fmt.Println("Error starting server:", err)
 		return
