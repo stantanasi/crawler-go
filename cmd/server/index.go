@@ -7,14 +7,14 @@ import (
 
 func main() {
 	// configuration du serveur //
-	_, err := net.Listen("tcp", "0.0.0.0:8080")
+	ln, err := net.Listen("tcp", "0.0.0.0:8080")
 	if err != nil {
 		fmt.Println("Error starting server:", err)
 		return
 	}
 	fmt.Println("Server started!")
-	// configuration du serveur //
 
+	// bouble continue pour accepter les connexions //
 	for {
 		conn, err := ln.Accept()
 		defer conn.Close()
