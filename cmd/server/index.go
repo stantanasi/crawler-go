@@ -79,8 +79,26 @@ func handleRequest(conn net.Conn, response chan<- any) {
 		return
 	}
 
-	response <- protocols.GenericResponse{
-		Command: request.Command,
-		Status: "nok",
+	switch request.Command {
+	case "get-site":
+		response <- protocols.GetSiteResponse{
+			Command: "get-site",
+			Status: "ok",
+		}
+	case "create-site":
+		response <- protocols.CreateSiteResponse{
+			Command: "create-site",
+			Status: "ok",
+		}
+	case "get-file":
+		response <- protocols.GetFileResponse{
+			Command: "get-file",
+			Status: "ok",
+		}
+	default:
+		response <- protocols.GenericResponse{
+			Command: request.Command,
+			Status: "nok",
+		}
 	}
 }
