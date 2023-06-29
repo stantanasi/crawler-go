@@ -14,7 +14,7 @@ func main() {
 	}
 	fmt.Println("Server started!")
 
-	// bouble continue pour accepter les connexions //
+	// boucle continue pour accepter les connexions //
 	for {
 		conn, err := ln.Accept()
 		defer conn.Close()
