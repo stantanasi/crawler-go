@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"github.com/stantanasi/crawler-go/pkg/protocols"
 	"net"
 	"time"
 )
@@ -43,6 +45,42 @@ func main() {
 			fmt.Println("Error accepting connection:", err)
 			continue
 		}
+
+		response := make(chan any)
+
+		go handleRequest(conn, response)
+
+		responseJSON, err := json.Marshal(<-response)
+		if err != nil {
+			fmt.Println("Error creating response:", err)
+			return
+		}
+
+		_, err = conn.Write([]byte(string(responseJSON)))
+		if err != nil {
+			fmt.Println("Error sending response:", err)
+			return
+		}
+	}
+}
+
+func handleRequest(conn net.Conn, response chan<- any) {
+	buffer := make([]byte, 4096)
+	n, err := conn.Read(buffer)
+	if err != nil {
+		fmt.Println("Error reading request:", err)
+		return
 	}
 
+	var request protocols.GenericRequest
+	err = json.Unmarshal(buffer[:n], &request)
+	if err != nil {
+		fmt.Println("Error parsing request:", err)
+		return
+	}
+
+	response <- protocols.GenericResponse{
+		Command: request.Command,
+		Status: "nok",
+	}
 }
