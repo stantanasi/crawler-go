@@ -15,7 +15,7 @@ type CreateSiteRequest struct {
 	Command string `json:"command"`
 }
 
-type CreateSiteReponse struct {
+type CreateSiteResponse struct {
 	Command string `json:"command"`
 	Status string `json:"status"`
 }
@@ -35,7 +35,7 @@ type UpdateSiteRequest struct {
 	Command string `json:"command"`
 }
 
-type UpdateSiteReponse struct {
+type UpdateSiteResponse struct {
 	Command string `json:"command"`
 	Status string `json:"status"`
 }
