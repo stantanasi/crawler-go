@@ -1,8 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
+	"github.com/stantanasi/crawler-go/pkg/protocols"
 	"net"
 	"net/http"
 )
@@ -10,14 +12,35 @@ import (
 func main() {
 	// Configure HTTP server
 	r := mux.NewRouter()
+	r.HandleFunc("/sites", getSites).Methods("GET")
+	r.HandleFunc("/sites", postSites).Methods("POST")
+	r.HandleFunc("/files", getFiles).Methods("GET")
 	http.ListenAndServe(":8080", r)
+}
 
+
+func connectToServer() net.Conn {
 	// configuration du serveur //
 	conn, err := net.Dial("tcp", "localhost:1234")
 	if err != nil {
 		fmt.Println("Error starting server:", err)
-		return
+		return nil
 	}
+
+	return conn
+}
+
+func getSites(w http.ResponseWriter, r *http.Request) {
+	conn := connectToServer()
 	defer conn.Close()
-	// configuration du serveur //
+}
+
+func postSites(w http.ResponseWriter, r *http.Request) {
+	conn := connectToServer()
+	defer conn.Close()
+}
+
+func getFiles(w http.ResponseWriter, r *http.Request) {
+	conn := connectToServer()
+	defer conn.Close()
 }
