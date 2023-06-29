@@ -90,9 +90,24 @@ func handleRequest(conn net.Conn, response chan<- any) {
 			Command: "create-site",
 			Status: "ok",
 		}
+	case "update-site":
+		response <- protocols.UpdateSiteResponse{
+			Command: "update-site",
+			Status: "ok",
+		}
 	case "get-file":
 		response <- protocols.GetFileResponse{
 			Command: "get-file",
+			Status: "ok",
+		}
+	case "create-file":
+		response <- protocols.CreateFileResponse{
+			Command: "create-file",
+			Status: "ok",
+		}
+	case "update-file":
+		response <- protocols.UpdateFileResponse{
+			Command: "update-file",
 			Status: "ok",
 		}
 	default:
