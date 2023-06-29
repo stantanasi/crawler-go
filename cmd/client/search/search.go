@@ -49,6 +49,17 @@ func getSites(w http.ResponseWriter, r *http.Request) {
 func postSites(w http.ResponseWriter, r *http.Request) {
 	conn := connectToServer()
 	defer conn.Close()
+
+	request := protocols.GetSiteRequest{
+		Command: "create-site",
+	}
+	requestJSON, err := json.Marshal(request)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Fprintf(conn, string(requestJSON))
 }
 
 func getFiles(w http.ResponseWriter, r *http.Request) {
