@@ -65,4 +65,15 @@ func postSites(w http.ResponseWriter, r *http.Request) {
 func getFiles(w http.ResponseWriter, r *http.Request) {
 	conn := connectToServer()
 	defer conn.Close()
+
+	request := protocols.GetSiteRequest{
+		Command: "get-file",
+	}
+	requestJSON, err := json.Marshal(request)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Fprintf(conn, string(requestJSON))
 }
