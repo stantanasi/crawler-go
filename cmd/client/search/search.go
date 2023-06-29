@@ -50,7 +50,7 @@ func postSites(w http.ResponseWriter, r *http.Request) {
 	conn := connectToServer()
 	defer conn.Close()
 
-	request := protocols.GetSiteRequest{
+	request := protocols.CreateSiteRequest{
 		Command: "create-site",
 	}
 	requestJSON, err := json.Marshal(request)
@@ -66,7 +66,7 @@ func getFiles(w http.ResponseWriter, r *http.Request) {
 	conn := connectToServer()
 	defer conn.Close()
 
-	request := protocols.GetSiteRequest{
+	request := protocols.GetFileRequest{
 		Command: "get-file",
 	}
 	requestJSON, err := json.Marshal(request)
